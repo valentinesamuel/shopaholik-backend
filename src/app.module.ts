@@ -2,17 +2,10 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { dataSourceOptions } from 'db/data-source';
 
 @Module({
-  imports: [
-    TypeOrmModule.forRoot({
-      type: 'sqlite',
-      database: 'db.sqlite',
-      entities: ['dist/**/*.entity.js'],
-      logging: true,
-      // synchronize: true,
-    }),
-  ],
+  imports: [TypeOrmModule.forRoot(dataSourceOptions)],
   controllers: [AppController],
   providers: [AppService],
 })
