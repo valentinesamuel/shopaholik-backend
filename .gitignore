@@ -2,8 +2,8 @@
 /dist
 /node_modules
 
-# Database
-*.sqlite
+# Secrets
+.env
 
 # Logs
 logs
