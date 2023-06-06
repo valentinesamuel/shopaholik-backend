@@ -1,18 +1,25 @@
+import { Supplier } from 'src/supplier/entities/supplier.entity';
 import { ProductCategory, StockStatus } from 'src/utils/Types';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   product_id: string;
 
-  @Column()
+  @Column({ unique: true, nullable: false })
   name: string;
 
-  @Column({ enum: ProductCategory })
+  @Column({ enum: ProductCategory, unique: true, nullable: false })
   category: string;
 
-  @Column()
+  @Column({ unique: true, nullable: false })
   product_code: string;
 
   @Column()
@@ -32,6 +39,10 @@ export class Product {
 
   @Column()
   supplier_id: string;
+
+  @ManyToOne(() => Supplier, { cascade: true })
+  @JoinColumn({ name: 'supplier_id' })
+  supplier: Supplier;
 
   @Column()
   quantity?: number;

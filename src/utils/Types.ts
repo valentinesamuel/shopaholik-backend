@@ -2,6 +2,7 @@ export interface Supplier {
   supplierId: string;
   name: string;
   address: string;
+  email: string;
   phone: string;
   last_order_date: string;
   profile_pic_url: string;

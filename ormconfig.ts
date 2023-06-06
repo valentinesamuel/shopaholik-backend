@@ -1,14 +1,17 @@
+import { Order } from 'src/order/entities/order.entity';
+import { OrderedItem } from 'src/ordered-item/entities/ordered-item.entity';
 import { Product } from 'src/product/entities/product.entity';
+import { Supplier } from 'src/supplier/entities/supplier.entity';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
 const ORMConfig: PostgresConnectionOptions = {
   type: 'postgres',
-  database: `${process.env.POSTGRES_DB}`,
+  database: `shopaholikDB`,
   host: 'localhost',
   port: 5432,
-  username: `${process.env.POSTGRES_USER}`,
-  password: `${process.env.POSTGRES_PASSWORD}`,
-  entities: [Product],
+  username: 'postgres',
+  password: 'postgres',
+  entities: [Product, Supplier, OrderedItem, Order],
   synchronize: true,
 };
 

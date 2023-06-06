@@ -4,21 +4,21 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import { CreateSupplierDto } from './dto/create-supplier.dto';
+import { UpdateSupplierDto } from './dto/update-supplier.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from './entities/product.entity';
+import { Supplier } from './entities/supplier.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class ProductService {
+export class SupplierService {
   constructor(
-    @InjectRepository(Product) private productRepo: Repository<Product>,
+    @InjectRepository(Supplier) private supplierRepo: Repository<Supplier>,
   ) {}
-  async create(createProductDto: CreateProductDto) {
+  async create(createSupplierDto: CreateSupplierDto) {
     try {
-      const product = await this.productRepo.create(createProductDto);
-      return await this.productRepo.save(product);
+      const supplier = await this.supplierRepo.create(createSupplierDto);
+      return await this.supplierRepo.save(supplier);
     } catch (error) {
       throw new NotFoundException();
     }
@@ -26,7 +26,7 @@ export class ProductService {
 
   findAll() {
     try {
-      return this.productRepo.find();
+      return this.supplierRepo.find();
     } catch (error) {
       throw new NotFoundException();
     }
@@ -34,9 +34,9 @@ export class ProductService {
 
   findOne(id: string) {
     try {
-      return this.productRepo.findOne({
+      return this.supplierRepo.findOne({
         where: {
-          product_id: id,
+          supplier_id: id,
         },
       });
     } catch (error) {
@@ -44,14 +44,14 @@ export class ProductService {
     }
   }
 
-  update(id: string, updateProductDto: UpdateProductDto) {
+  update(id: string, updateSupplierDto: UpdateSupplierDto) {
     try {
-      return this.productRepo.update(id, updateProductDto);
+      return this.supplierRepo.update(id, updateSupplierDto);
     } catch (error) {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: 'Could not update product',
+          error: 'Could not update supplier',
         },
         HttpStatus.BAD_REQUEST,
         { cause: error },
@@ -61,12 +61,12 @@ export class ProductService {
 
   remove(id: string) {
     try {
-      return this.productRepo.delete(id);
+      return this.supplierRepo.delete(id);
     } catch (error) {
       throw new HttpException(
         {
           status: HttpStatus.NOT_FOUND,
-          error: 'Could not delete product',
+          error: 'Could not delete supploer',
         },
         HttpStatus.BAD_REQUEST,
         { cause: error },

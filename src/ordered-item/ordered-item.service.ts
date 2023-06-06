@@ -4,21 +4,24 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { CreateProductDto } from './dto/create-product.dto';
-import { UpdateProductDto } from './dto/update-product.dto';
+import { CreateOrderedItemDto } from './dto/create-ordered-item.dto';
+import { UpdateOrderedItemDto } from './dto/update-ordered-item.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Product } from './entities/product.entity';
+import { OrderedItem } from './entities/ordered-item.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class ProductService {
+export class OrderedItemService {
   constructor(
-    @InjectRepository(Product) private productRepo: Repository<Product>,
+    @InjectRepository(OrderedItem)
+    private orderedItemRepo: Repository<OrderedItem>,
   ) {}
-  async create(createProductDto: CreateProductDto) {
+  async create(createOrderedItemDto: CreateOrderedItemDto) {
     try {
-      const product = await this.productRepo.create(createProductDto);
-      return await this.productRepo.save(product);
+      const orderedItem = await this.orderedItemRepo.create(
+        createOrderedItemDto,
+      );
+      return await this.orderedItemRepo.save(orderedItem);
     } catch (error) {
       throw new NotFoundException();
     }
@@ -26,7 +29,7 @@ export class ProductService {
 
   findAll() {
     try {
-      return this.productRepo.find();
+      return this.orderedItemRepo.find();
     } catch (error) {
       throw new NotFoundException();
     }
@@ -34,9 +37,9 @@ export class ProductService {
 
   findOne(id: string) {
     try {
-      return this.productRepo.findOne({
+      return this.orderedItemRepo.findOne({
         where: {
-          product_id: id,
+          ordered_item_id: id,
         },
       });
     } catch (error) {
@@ -44,14 +47,14 @@ export class ProductService {
     }
   }
 
-  update(id: string, updateProductDto: UpdateProductDto) {
+  update(id: string, updateOrderedItemDto: UpdateOrderedItemDto) {
     try {
-      return this.productRepo.update(id, updateProductDto);
+      return this.orderedItemRepo.update(id, updateOrderedItemDto);
     } catch (error) {
       throw new HttpException(
         {
           status: HttpStatus.BAD_REQUEST,
-          error: 'Could not update product',
+          error: 'Could not update ordered item',
         },
         HttpStatus.BAD_REQUEST,
         { cause: error },
@@ -61,12 +64,12 @@ export class ProductService {
 
   remove(id: string) {
     try {
-      return this.productRepo.delete(id);
+      return this.orderedItemRepo.delete(id);
     } catch (error) {
       throw new HttpException(
         {
           status: HttpStatus.NOT_FOUND,
-          error: 'Could not delete product',
+          error: 'Could not delete ordered-item',
         },
         HttpStatus.BAD_REQUEST,
         { cause: error },
