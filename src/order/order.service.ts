@@ -19,7 +19,9 @@ export class OrderService {
       const order = await this.orderRepo.create(createOrderDto);
       return await this.orderRepo.save(order);
     } catch (error) {
-      throw new BadRequestException();
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 
@@ -29,7 +31,14 @@ export class OrderService {
 
   findOne(id: string) {
     try {
-      return this.orderRepo.findOne({ where: { orderId: id } });
+      return this.orderRepo.findOne({
+        where: { orderId: id },
+        // select: {
+        //   items: true,
+        //   orderId: true,
+        //   orderNumber: true,
+        // },
+      });
     } catch (error) {
       throw new NotFoundException();
     }

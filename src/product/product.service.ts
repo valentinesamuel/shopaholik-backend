@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -20,7 +21,9 @@ export class ProductService {
       const product = await this.productRepo.create(createProductDto);
       return await this.productRepo.save(product);
     } catch (error) {
-      throw new NotFoundException();
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 

@@ -1,5 +1,12 @@
+import { Order } from 'src/order/entities/order.entity';
 import { ProductCategory } from 'src/utils/Types';
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 
 @Entity()
 export class OrderedItem {
@@ -15,8 +22,15 @@ export class OrderedItem {
   @Column()
   unit_price: number;
 
-  @Column({ enum: ProductCategory, nullable: false })
-  category: ProductCategory;
+  @Column()
+  order_id: string;
+
+  @ManyToOne(() => Order, (order) => order.items, { onDelete: 'CASCADE' })
+  @JoinColumn({ name: 'order_id' })
+  order: Order;
+
+  @Column()
+  category: string;
 
   @Column()
   total_price: number;

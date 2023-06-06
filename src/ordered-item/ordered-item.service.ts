@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   HttpException,
   HttpStatus,
   Injectable,
@@ -23,7 +24,9 @@ export class OrderedItemService {
       );
       return await this.orderedItemRepo.save(orderedItem);
     } catch (error) {
-      throw new NotFoundException();
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 

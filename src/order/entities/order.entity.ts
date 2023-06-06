@@ -2,12 +2,15 @@ import { OrderedItem } from 'src/ordered-item/entities/ordered-item.entity';
 import { Supplier } from 'src/supplier/entities/supplier.entity';
 import { ShippingStatus } from 'src/utils/Types';
 import {
+  BeforeInsert,
   Column,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import { randomBytes } from 'crypto';
 
 @Entity()
 export class Order {
@@ -20,7 +23,7 @@ export class Order {
   @Column()
   dateOfOrder: string;
 
-  @Column({ enum: ShippingStatus, unique: true, nullable: false })
+  @Column({ enum: ShippingStatus, nullable: false })
   shippingStatus: string;
 
   @Column()
@@ -29,9 +32,20 @@ export class Order {
   @Column()
   estimatedTimeOfArrival: string;
 
+  @Column()
+  supplier_id: string;
+
   @ManyToOne(() => Supplier, (supplier) => supplier.orders)
+  @JoinColumn({ name: 'supplier_id' })
   supplier: Supplier;
 
-  @OneToMany(() => OrderedItem, (orderedItem) => orderedItem.ordered_item_id)
+  @OneToMany(() => OrderedItem, (orderedItem) => orderedItem.ordered_item_id, {
+    nullable: false,
+  })
   items: OrderedItem[];
+
+  @BeforeInsert()
+  generateUUID() {
+    this.orderNumber = randomBytes(4).toString('hex').toUpperCase();
+  }
 }
