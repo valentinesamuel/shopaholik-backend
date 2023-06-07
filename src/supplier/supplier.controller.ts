@@ -17,17 +17,17 @@ export class SupplierController {
 
   @Post()
   create(@Body() createSupplierDto: CreateSupplierDto) {
-    return this.supplierService.create(createSupplierDto);
+    return this.supplierService.createSupplier(createSupplierDto);
   }
 
   @Get()
   findAll() {
-    return this.supplierService.findAll();
+    return this.supplierService.findAllSuppliers();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.supplierService.findOne(id);
+    return this.supplierService.findOneSupplier(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class SupplierController {
     @Param('id') id: string,
     @Body() updateSupplierDto: UpdateSupplierDto,
   ) {
-    return this.supplierService.update(id, updateSupplierDto);
+    return this.supplierService.updateSupplier(id, updateSupplierDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.supplierService.remove(id);
+    return this.supplierService.removeSupplier(id);
   }
 }

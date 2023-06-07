@@ -1,4 +1,4 @@
-import { IsArray, IsIn, IsInt, IsString } from 'class-validator';
+import { IsIn, IsInt, IsString } from 'class-validator';
 
 export class CreateOrderDto {
   @IsString()
@@ -15,7 +15,4 @@ export class CreateOrderDto {
 
   @IsString()
   supplier_id: string;
-
-  @IsArray()
-  items: [];
 }

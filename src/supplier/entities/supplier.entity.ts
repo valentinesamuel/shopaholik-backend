@@ -30,6 +30,6 @@ export class Supplier {
   @Column()
   additional_infromation?: string;
 
-  @OneToMany(() => Order, (order) => order.supplier)
+  @OneToMany(() => Order, (order) => order.supplier, { eager: true })
   orders: Order[];
 }

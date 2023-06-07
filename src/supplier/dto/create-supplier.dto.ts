@@ -26,5 +26,5 @@ export class CreateSupplierDto {
   additional_infromation?: string;
 
   @IsArray()
-  orders?: [];
+  orders: any[];
 }

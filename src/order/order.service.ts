@@ -14,7 +14,7 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class OrderService {
   constructor(@InjectRepository(Order) private orderRepo: Repository<Order>) {}
-  async create(createOrderDto: CreateOrderDto) {
+  async createOrder(createOrderDto: CreateOrderDto) {
     try {
       const order = await this.orderRepo.create(createOrderDto);
       return await this.orderRepo.save(order);
@@ -25,11 +25,11 @@ export class OrderService {
     }
   }
 
-  findAll() {
+  findAllOrders() {
     return this.orderRepo.find();
   }
 
-  findOne(id: string) {
+  findOneOrder(id: string) {
     try {
       return this.orderRepo.findOne({
         where: { orderId: id },
@@ -44,7 +44,7 @@ export class OrderService {
     }
   }
 
-  update(id: string, updateOrderDto: UpdateOrderDto) {
+  updateOrder(id: string, updateOrderDto: UpdateOrderDto) {
     try {
       return this.orderRepo.update(id, updateOrderDto);
     } catch (error) {
@@ -59,7 +59,7 @@ export class OrderService {
     }
   }
 
-  remove(id: string) {
+  removeOrder(id: string) {
     return this.orderRepo.delete(id);
   }
 }

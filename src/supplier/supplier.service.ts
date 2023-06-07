@@ -16,7 +16,7 @@ export class SupplierService {
   constructor(
     @InjectRepository(Supplier) private supplierRepo: Repository<Supplier>,
   ) {}
-  async create(createSupplierDto: CreateSupplierDto) {
+  async createSupplier(createSupplierDto: CreateSupplierDto) {
     try {
       const supplier = await this.supplierRepo.create(createSupplierDto);
       return await this.supplierRepo.save(supplier);
@@ -27,7 +27,7 @@ export class SupplierService {
     }
   }
 
-  findAll() {
+  findAllSuppliers() {
     try {
       return this.supplierRepo.find();
     } catch (error) {
@@ -35,11 +35,14 @@ export class SupplierService {
     }
   }
 
-  findOne(id: string) {
+  findOneSupplier(id: string) {
     try {
       return this.supplierRepo.findOne({
         where: {
           supplier_id: id,
+        },
+        select: {
+          orders: true,
         },
       });
     } catch (error) {
@@ -47,7 +50,7 @@ export class SupplierService {
     }
   }
 
-  update(id: string, updateSupplierDto: UpdateSupplierDto) {
+  updateSupplier(id: string, updateSupplierDto: UpdateSupplierDto) {
     try {
       return this.supplierRepo.update(id, updateSupplierDto);
     } catch (error) {
@@ -62,7 +65,7 @@ export class SupplierService {
     }
   }
 
-  remove(id: string) {
+  removeSupplier(id: string) {
     try {
       return this.supplierRepo.delete(id);
     } catch (error) {

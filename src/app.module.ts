@@ -11,10 +11,10 @@ import ORMConfig from 'ormconfig';
 @Module({
   imports: [
     TypeOrmModule.forRoot(ORMConfig),
-    ProductModule,
     SupplierModule,
-    OrderedItemModule,
     OrderModule,
+    OrderedItemModule,
+    ProductModule,
   ],
   controllers: [AppController],
   providers: [AppService],

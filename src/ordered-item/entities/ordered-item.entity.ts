@@ -1,5 +1,4 @@
 import { Order } from 'src/order/entities/order.entity';
-import { ProductCategory } from 'src/utils/Types';
 import {
   Column,
   Entity,
