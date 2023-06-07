@@ -1,10 +1,11 @@
-import { IsIn, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsIn, IsInt, IsNotEmpty, IsString } from 'class-validator';
+import { ProductCategory } from 'src/utils/Types';
 
 export class CreateProductDto {
   @IsString()
   name: string;
 
-  @IsString()
+  @IsEnum(ProductCategory)
   category: string;
 
   @IsString()

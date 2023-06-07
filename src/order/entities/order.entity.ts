@@ -39,8 +39,9 @@ export class Order {
   @JoinColumn({ name: 'supplier_id' })
   supplier: Supplier;
 
-  @OneToMany(() => OrderedItem, (orderedItem) => orderedItem.ordered_item_id, {
+  @OneToMany(() => OrderedItem, (orderedItem) => orderedItem.order, {
     nullable: false,
+    eager: true,
   })
   items: OrderedItem[];
 

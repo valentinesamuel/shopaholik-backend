@@ -33,11 +33,6 @@ export class OrderService {
     try {
       return this.orderRepo.findOne({
         where: { orderId: id },
-        // select: {
-        //   items: true,
-        //   orderId: true,
-        //   orderNumber: true,
-        // },
       });
     } catch (error) {
       throw new NotFoundException();

@@ -16,7 +16,7 @@ export class Product {
   @Column({ unique: true, nullable: false })
   name: string;
 
-  @Column({ enum: ProductCategory, unique: true, nullable: false })
+  @Column({ enum: ProductCategory, nullable: false })
   category: string;
 
   @Column({ unique: true, nullable: false })

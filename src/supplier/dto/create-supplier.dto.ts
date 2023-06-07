@@ -23,7 +23,7 @@ export class CreateSupplierDto {
   state: string;
 
   @IsString()
-  additional_infromation?: string;
+  additional_information?: string;
 
   @IsArray()
   orders: any[];

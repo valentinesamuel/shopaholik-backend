@@ -23,7 +23,4 @@ export class UpdateOrderDto extends PartialType(CreateOrderDto) {
 
   @IsString()
   supplier_id: string;
-
-  @IsArray()
-  items: [];
 }

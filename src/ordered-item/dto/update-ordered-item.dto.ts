@@ -16,6 +16,9 @@ export class UpdateOrderedItemDto extends PartialType(CreateOrderedItemDto) {
   unit_price: number;
 
   @IsString()
+  order_number: string;
+
+  @IsString()
   order_id: string;
 
   @IsString()

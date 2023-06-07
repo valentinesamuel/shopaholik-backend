@@ -6,7 +6,7 @@ export class Supplier {
   @PrimaryGeneratedColumn('uuid')
   supplier_id: string;
 
-  @Column()
+  @Column({ unique: true })
   name: string;
 
   @Column()
@@ -28,7 +28,7 @@ export class Supplier {
   state: string;
 
   @Column()
-  additional_infromation?: string;
+  additional_information?: string;
 
   @OneToMany(() => Order, (order) => order.supplier, { eager: true })
   orders: Order[];

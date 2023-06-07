@@ -12,6 +12,9 @@ export class CreateOrderedItemDto {
   unit_price: number;
 
   @IsString()
+  order_number: string;
+
+  @IsString()
   order_id: string;
 
   @IsEnum(ProductCategory)
