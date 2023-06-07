@@ -54,6 +54,7 @@ export interface SaleProduct extends Product {
 }
 
 export interface Personnel {
+  id: string;
   personnelId?: string;
   firstName: string;
   lastName: string;

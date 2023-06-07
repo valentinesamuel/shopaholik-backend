@@ -17,7 +17,7 @@ export class OrderedItemService {
     @InjectRepository(OrderedItem)
     private orderedItemRepo: Repository<OrderedItem>,
   ) {}
-  async create(createOrderedItemDto: CreateOrderedItemDto) {
+  async createOrderedItem(createOrderedItemDto: CreateOrderedItemDto) {
     try {
       const orderedItem = await this.orderedItemRepo.create(
         createOrderedItemDto,
@@ -30,7 +30,7 @@ export class OrderedItemService {
     }
   }
 
-  findAll() {
+  findAllOrderedItem() {
     try {
       return this.orderedItemRepo.find();
     } catch (error) {
@@ -38,7 +38,7 @@ export class OrderedItemService {
     }
   }
 
-  findOne(id: string) {
+  findOneOrderedItem(id: string) {
     try {
       return this.orderedItemRepo.findOne({
         where: {
@@ -50,7 +50,7 @@ export class OrderedItemService {
     }
   }
 
-  update(id: string, updateOrderedItemDto: UpdateOrderedItemDto) {
+  updateOrderedItem(id: string, updateOrderedItemDto: UpdateOrderedItemDto) {
     try {
       return this.orderedItemRepo.update(id, updateOrderedItemDto);
     } catch (error) {
@@ -65,7 +65,7 @@ export class OrderedItemService {
     }
   }
 
-  remove(id: string) {
+  removeOrderedItem(id: string) {
     try {
       return this.orderedItemRepo.delete(id);
     } catch (error) {

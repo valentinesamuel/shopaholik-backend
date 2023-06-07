@@ -17,17 +17,17 @@ export class OrderedItemController {
 
   @Post()
   create(@Body() createOrderedItemDto: CreateOrderedItemDto) {
-    return this.orderedItemService.create(createOrderedItemDto);
+    return this.orderedItemService.createOrderedItem(createOrderedItemDto);
   }
 
   @Get()
   findAll() {
-    return this.orderedItemService.findAll();
+    return this.orderedItemService.findAllOrderedItem();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.orderedItemService.findOne(id);
+    return this.orderedItemService.findOneOrderedItem(id);
   }
 
   @Patch(':id')
@@ -35,11 +35,11 @@ export class OrderedItemController {
     @Param('id') id: string,
     @Body() updateOrderedItemDto: UpdateOrderedItemDto,
   ) {
-    return this.orderedItemService.update(id, updateOrderedItemDto);
+    return this.orderedItemService.updateOrderedItem(id, updateOrderedItemDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.orderedItemService.remove(id);
+    return this.orderedItemService.removeOrderedItem(id);
   }
 }

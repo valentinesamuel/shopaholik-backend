@@ -16,7 +16,7 @@ export class ProductService {
   constructor(
     @InjectRepository(Product) private productRepo: Repository<Product>,
   ) {}
-  async create(createProductDto: CreateProductDto) {
+  async createProduct(createProductDto: CreateProductDto) {
     try {
       const product = await this.productRepo.create(createProductDto);
       return await this.productRepo.save(product);
@@ -27,7 +27,7 @@ export class ProductService {
     }
   }
 
-  findAll() {
+  findAllProducts() {
     try {
       return this.productRepo.find();
     } catch (error) {
@@ -35,7 +35,7 @@ export class ProductService {
     }
   }
 
-  findOne(id: string) {
+  findOneProduct(id: string) {
     try {
       return this.productRepo.findOne({
         where: {
@@ -47,7 +47,7 @@ export class ProductService {
     }
   }
 
-  update(id: string, updateProductDto: UpdateProductDto) {
+  updateProduct(id: string, updateProductDto: UpdateProductDto) {
     try {
       return this.productRepo.update(id, updateProductDto);
     } catch (error) {
@@ -62,7 +62,7 @@ export class ProductService {
     }
   }
 
-  remove(id: string) {
+  removeProduct(id: string) {
     try {
       return this.productRepo.delete(id);
     } catch (error) {
