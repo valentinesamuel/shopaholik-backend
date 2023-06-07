@@ -54,14 +54,9 @@ export class SupplierService {
     try {
       return this.supplierRepo.update(id, updateSupplierDto);
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Could not update supplier',
-        },
-        HttpStatus.BAD_REQUEST,
-        { cause: error },
-      );
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 
@@ -69,14 +64,9 @@ export class SupplierService {
     try {
       return this.supplierRepo.delete(id);
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          error: 'Could not delete supploer',
-        },
-        HttpStatus.BAD_REQUEST,
-        { cause: error },
-      );
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 }

@@ -26,7 +26,13 @@ export class OrderService {
   }
 
   findAllOrders() {
-    return this.orderRepo.find();
+    try {
+      return this.orderRepo.find();
+    } catch (error) {
+      throw new BadRequestException({
+        cause: error,
+      });
+    }
   }
 
   findOneOrder(id: string) {
@@ -35,7 +41,7 @@ export class OrderService {
         where: { orderId: id },
       });
     } catch (error) {
-      throw new NotFoundException();
+      throw new NotFoundException(error);
     }
   }
 
@@ -43,18 +49,15 @@ export class OrderService {
     try {
       return this.orderRepo.update(id, updateOrderDto);
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Could not update order',
-        },
-        HttpStatus.BAD_REQUEST,
-        { cause: error },
-      );
+      throw new NotFoundException(error);
     }
   }
 
   removeOrder(id: string) {
-    return this.orderRepo.delete(id);
+    try {
+      return this.orderRepo.delete(id);
+    } catch (error) {
+      throw new NotFoundException(error);
+    }
   }
 }

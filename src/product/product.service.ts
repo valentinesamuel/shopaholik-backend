@@ -51,14 +51,9 @@ export class ProductService {
     try {
       return this.productRepo.update(id, updateProductDto);
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.BAD_REQUEST,
-          error: 'Could not update product',
-        },
-        HttpStatus.BAD_REQUEST,
-        { cause: error },
-      );
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 
@@ -66,14 +61,9 @@ export class ProductService {
     try {
       return this.productRepo.delete(id);
     } catch (error) {
-      throw new HttpException(
-        {
-          status: HttpStatus.NOT_FOUND,
-          error: 'Could not delete product',
-        },
-        HttpStatus.BAD_REQUEST,
-        { cause: error },
-      );
+      throw new BadRequestException({
+        cause: error,
+      });
     }
   }
 }
