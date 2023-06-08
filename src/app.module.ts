@@ -7,6 +7,7 @@ import { SupplierModule } from './supplier/supplier.module';
 import { OrderedItemModule } from './ordered-item/ordered-item.module';
 import { OrderModule } from './order/order.module';
 import { PersonnelModule } from './personnel/personnel.module';
+import { UserModule } from './user/user.module';
 import ORMConfig from 'ormconfig';
 
 @Module({
@@ -17,6 +18,7 @@ import ORMConfig from 'ormconfig';
     OrderedItemModule,
     ProductModule,
     PersonnelModule,
+    UserModule,
   ],
   controllers: [AppController],
   providers: [AppService],

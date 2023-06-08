@@ -1,6 +1,7 @@
 import { ADMINROLE, JobDesignation } from 'src/utils/Types';
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
 import { randomBytes } from 'crypto';
+import { getJobCode } from 'src/utils/generatePersonnelId';
 
 @Entity()
 export class Personnel {
@@ -74,39 +75,6 @@ export class Personnel {
 
   @BeforeInsert()
   generateUUID() {
-    this.personnelId =
-      getJobCode(this.jobDesignation) +
-      '-' +
-      randomBytes(4).toString('hex').toUpperCase();
+    this.personnelId = getJobCode(this.jobDesignation);
   }
-}
-
-function getJobCode(jobDesignation: string): string {
-  let jobCode: string;
-
-  switch (jobDesignation) {
-    case 'FLOOR WORKER':
-      jobCode = 'FLK';
-      break;
-    case 'MANAGER':
-      jobCode = 'MNG';
-      break;
-    case 'SUPERVISOR':
-      jobCode = 'SPV';
-      break;
-    case 'CASHIER':
-      jobCode = 'CSH';
-      break;
-    case 'SECURITY':
-      jobCode = 'SEC';
-      break;
-    case 'JANITOR':
-      jobCode = 'JAN';
-      break;
-    default:
-      jobCode = '';
-      break;
-  }
-
-  return jobCode;
 }
