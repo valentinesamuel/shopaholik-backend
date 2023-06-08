@@ -6,10 +6,15 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
+  Req,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { SignAuthDto } from './dto/signin-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
+import { AuthGuard } from './auth.guard';
+import { log } from 'console';
+import { Request } from 'express';
 
 @Controller('auth')
 export class AuthController {
@@ -21,14 +26,10 @@ export class AuthController {
     return this.authService.signIn(name, workerID, password, role);
   }
 
-  // @Post()
-  // create(@Body() createAuthDto: CreateAuthDto) {
-  //   return this.authService.create(createAuthDto);
-  // }
-
-  @Get()
-  findAll() {
-    return this.authService.findAll();
+  @UseGuards(AuthGuard)
+  @Get('profile')
+  getProfile(@Req() req: Request) {
+    return req.user;
   }
 
   @Get(':id')
