@@ -13,7 +13,6 @@ import { AuthService } from './auth.service';
 import { SignAuthDto } from './dto/signin-auth.dto';
 import { UpdateAuthDto } from './dto/update-auth.dto';
 import { AuthGuard } from './auth.guard';
-import { log } from 'console';
 import { Request } from 'express';
 
 @Controller('auth')

@@ -6,11 +6,14 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
 import { OrderedItemService } from './ordered-item.service';
 import { CreateOrderedItemDto } from './dto/create-ordered-item.dto';
 import { UpdateOrderedItemDto } from './dto/update-ordered-item.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseGuards(AuthGuard)
 @Controller('orderedItem')
 export class OrderedItemController {
   constructor(private readonly orderedItemService: OrderedItemService) {}
