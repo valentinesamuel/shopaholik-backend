@@ -25,13 +25,12 @@ export class UserController {
 
   @Get()
   findAll() {
-    // return this.userService.findAllUsers();
-    return;
+    return this.userService.findAllUsers();
   }
 
   @Get()
   findOne(@Body('id') user: User) {
-    return this.userService.findOneUser(user);
+    return this.userService.findOneUser(user.name, user.workerID);
   }
 
   @Patch(':id')

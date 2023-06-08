@@ -1,13 +1,20 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Request, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller('seed')
+@Controller('')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
-  @Get()
-  async getHello() {
-    await this.appService.seedDatabase();
-    return 'Seeded';
+  @Post('login')
+  async login(@Request() req) {
+    console.log('login called');
+    return req.user;
   }
+
+  // @UseGuards(LocalAuthGuard)
+  // @Post('login')
+  // async protected(@Request() req) {
+  //   console.log('login called');
+  //   return req.user;
+  // }
 }

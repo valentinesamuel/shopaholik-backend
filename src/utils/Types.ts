@@ -88,7 +88,7 @@ export interface User {
 export interface PersonnelLogin {
   name: string;
   workerID: string;
-  password: string;
+  password?: string;
   role: string;
 }
 
