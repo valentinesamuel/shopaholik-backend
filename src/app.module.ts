@@ -9,6 +9,7 @@ import { OrderModule } from './order/order.module';
 import { PersonnelModule } from './personnel/personnel.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
+import { MetricModule } from './metric/metric.module';
 import ORMConfig from 'ormconfig';
 
 @Module({
@@ -21,6 +22,7 @@ import ORMConfig from 'ormconfig';
     PersonnelModule,
     UserModule,
     AuthModule,
+    MetricModule,
   ],
   controllers: [AppController],
   providers: [AppService],
