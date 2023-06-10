@@ -10,6 +10,7 @@ import { PersonnelModule } from './personnel/personnel.module';
 import { UserModule } from './user/user.module';
 import { AuthModule } from './auth/auth.module';
 import { MetricModule } from './metric/metric.module';
+import { CashierModule } from './cashier/cashier.module';
 import ORMConfig from 'ormconfig';
 
 @Module({
@@ -23,6 +24,7 @@ import ORMConfig from 'ormconfig';
     UserModule,
     AuthModule,
     MetricModule,
+    CashierModule,
   ],
   controllers: [AppController],
   providers: [AppService],

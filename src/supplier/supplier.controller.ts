@@ -33,6 +33,11 @@ export class SupplierController {
     return this.supplierService.findOneSupplier(id);
   }
 
+  @Get('order/:supplierId')
+  findSupplierOrder(@Param('supplierId') supplierId: string) {
+    return this.supplierService.findSupplierOrder(supplierId);
+  }
+
   @Patch(':id')
   update(
     @Param('id') id: string,

@@ -1,7 +1,5 @@
 import {
   BadRequestException,
-  HttpException,
-  HttpStatus,
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
@@ -40,6 +38,21 @@ export class SupplierService {
       return this.supplierRepo.findOne({
         where: {
           supplier_id: id,
+        },
+        // select: {
+        //   orders: true,
+        // },
+      });
+    } catch (error) {
+      throw new NotFoundException();
+    }
+  }
+
+  findSupplierOrder(supplierId: string) {
+    try {
+      return this.supplierRepo.findOne({
+        where: {
+          supplier_id: supplierId,
         },
         select: {
           orders: true,
