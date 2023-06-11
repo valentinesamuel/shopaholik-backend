@@ -39,9 +39,6 @@ export class SupplierService {
         where: {
           supplier_id: id,
         },
-        // select: {
-        //   orders: true,
-        // },
       });
     } catch (error) {
       throw new NotFoundException();

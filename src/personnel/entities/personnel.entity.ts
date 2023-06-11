@@ -1,6 +1,5 @@
 import { ADMINROLE, JobDesignation } from 'src/utils/Types';
 import { Entity, PrimaryGeneratedColumn, Column, BeforeInsert } from 'typeorm';
-import { randomBytes } from 'crypto';
 import { getJobCode } from 'src/utils/generatePersonnelId';
 
 @Entity()

@@ -1,26 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { CreateCashierDto } from './dto/create-cashier.dto';
-import { UpdateCashierDto } from './dto/update-cashier.dto';
+import { Product } from 'src/product/entities/product.entity';
+import { Like, Repository } from 'typeorm';
+import { InjectRepository } from '@nestjs/typeorm';
+import { ProductService } from 'src/product/product.service';
 
 @Injectable()
 export class CashierService {
-  create(createCashierDto: CreateCashierDto) {
-    return 'This action adds a new cashier';
-  }
-
-  findAll() {
-    return `This action returns all cashier`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} cashier`;
-  }
-
-  update(id: number, updateCashierDto: UpdateCashierDto) {
-    return `This action updates a #${id} cashier`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} cashier`;
-  }
+  constructor(private readonly productService: ProductService) {}
 }

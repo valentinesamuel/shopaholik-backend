@@ -38,7 +38,6 @@ export class CreatePersonnelDto {
   @IsString()
   gender: string;
 
-  @IsString()
   additionalInfo: string;
 
   @IsString()
@@ -59,6 +58,5 @@ export class CreatePersonnelDto {
   @IsEnum([...Object.values(ADMINROLE), ...Object.values(JobDesignation)])
   jobDesignation: string;
 
-  @IsInt()
   monthlySalary: number;
 }

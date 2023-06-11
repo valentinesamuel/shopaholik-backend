@@ -7,16 +7,39 @@ import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './entities/product.entity';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product) private productRepo: Repository<Product>,
   ) {}
+  async searchProductByName(productName: string) {
+    if (productName.length < 1) {
+      return;
+    }
+    try {
+      return this.productRepo.find({
+        where: [
+          {
+            name: Like(`%${productName}%`),
+            // product_code: Like(`%${productName}%`),
+          },
+        ],
+      });
+    } catch (error) {
+      throw new NotFoundException();
+    }
+  }
+
   async createProduct(createProductDto: CreateProductDto) {
     try {
-      const product = await this.productRepo.create(createProductDto);
+      const { quantity } = createProductDto;
+      const newProduct = { ...createProductDto };
+      newProduct.quantity_in_stock += quantity;
+      delete newProduct.quantity;
+
+      const product = await this.productRepo.create(newProduct);
       return await this.productRepo.save(product);
     } catch (error) {
       throw new BadRequestException({
