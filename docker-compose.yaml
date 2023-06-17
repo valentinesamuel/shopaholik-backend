@@ -1,6 +1,18 @@
 version: '3'
 services:
+  app:
+    container_name: nest-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
   db:
+    container_name: postgres
     image: postgres
     restart: always
     volumes:
@@ -9,7 +21,6 @@ services:
       - .env
     ports:
       - 5432:5432
-
     environment:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_USER=${POSTGRES_USER}
@@ -20,13 +31,12 @@ services:
     restart: always
     ports:
       - 8080:8080
-
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    restart: always
-    ports:
-      - 3000:3000
-    depends_on:
-      - db
+  # pgadmin:
+  #     container_name: pgadmin4
+  #     image: dpage/pgadmin4
+  #     restart: always
+  #     environment:
+  #       PGADMIN_DEFAULT_EMAIL: admin@email.com
+  #       PGADMIN_DEFAULT_PASSWORD: ${POSTGRES_PASSWORD}
+  #     ports:
+  #       - 5050:80
