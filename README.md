@@ -34,7 +34,7 @@
     <a href="https://github.com/valentinesamuel/shopaholik-backend"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/valentinesamuel/shopaholik-backend">View Demo</a>
+    <a href="https://drive.google.com/file/d/1scBh9cvD0ZovqMpLPd9keMkD1la6oZs9/view?usp=sharing">View Demo</a>
     ·
     <a href="https://github.com/valentinesamuel/shopaholik-backend/issues">Report Bug</a>
     ·
