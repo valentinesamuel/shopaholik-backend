@@ -4,9 +4,10 @@ import { Personnel } from 'src/personnel/entities/personnel.entity';
 import { Product } from 'src/product/entities/product.entity';
 import { Supplier } from 'src/supplier/entities/supplier.entity';
 import { User } from 'src/user/entities/user.entity';
+import { DataSourceOptions } from 'typeorm';
 import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConnectionOptions';
 
-const ORMConfig: PostgresConnectionOptions = {
+const ORMConfig: DataSourceOptions = {
   type: 'postgres',
   database: `shopaholikDB`,
   host: 'localhost',
